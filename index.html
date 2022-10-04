@@ -216,14 +216,14 @@
     function isCaptchaValid() {
       return isValidPredicate(SubmitButton, "Captcha Not Filled", () => {
         let response = document.getElementById("g-recaptcha-response");
-        return response == null || response.value.trim() == "";
+        return response != null || response.value.trim() != "";
       });
     }
 
     function isIBANValid() {
       return isValidPredicate(IBANInputField, "Please confirm your New IBAN number", () => {
         let regex = new RegExp(IBANValidationPattern);
-        return regex.test(IBANInputField.value) === false;
+        return regex.test(IBANInputField.value) === true;
       });
     }
 
@@ -294,8 +294,8 @@
     IBANInputField.addEventListener("input", (event) => onIbanInput(event));
     AccountJointlyHeldInputField.addEventListener("input", () => onAccountJointlyHeldInput());
     AgreeCheckbox.addEventListener("input", () => { AgreeCheckbox.setCustomValidity("") });
-    AccountExistingPayeeCheckbox.addEventListener("input", () => { AgreeCheckbox.setCustomValidity("") });
-    JointAccountCheckbox.addEventListener("input", () => { AgreeCheckbox.setCustomValidity("") });
+    AccountExistingPayeeCheckbox.addEventListener("input", () => { AccountExistingPayeeCheckbox.setCustomValidity("") });
+    JointAccountCheckbox.addEventListener("input", () => { JointAccountCheckbox.setCustomValidity("") });
 
   </script>
 </html>
