@@ -190,27 +190,43 @@
   </form>
 
   <script>
-    function validateSFForm(event) {
+    function onSubmitButtonClick(event) {
+      let isValid = isPolicyNumberValid();
+      isValid &= isCaptchaValid();
+
+      if(isValid === false) {
+        event.preventDefault();
+      }
+    }
+
+    function isPolicyNumberValid() {
       let policy_number = document.getElementById("00N0D000001ebjH");
-      let policy_hex_value = (Number(policy_number.value) % 256)
-        .toString(16)
-        .toUpperCase();
+      let policy_hex_value = (Number(policy_number.value) % 256).toString(16).toUpperCase();
       if (policy_hex_value.length === 1)
         policy_hex_value = "0" + policy_hex_value;
       let unique_identifier = document.getElementById("00N0D000001ebjI");
       if (policy_hex_value === unique_identifier.value.slice(0, 2)) {
         policy_number.setCustomValidity("");
       } else {
-        policy_number.setCustomValidity(
-          "Your Policy Number and Unique Identifier do not match an account on record"
-        );
-        event.preventDefault();
+        policy_number.setCustomValidity("Your Policy Number and Unique Identifier do not match an account on record");
         policy_number.reportValidity();
+        return false;
       }
+      return true;
+    }
+
+    function isCaptchaValid() {
+      let response = document.getElementById("g-recaptcha-response");
+      if(response == null || response.value.trim() == "") {
+        response.setCustomValidity("Captcha Not Filled");
+        response.reportValidity();
+        return false;
+      }
+      return true;
     }
 
     document
       .getElementsByName("submit")[0]
-      .addEventListener("click", (event) => validateSFForm(event));
+      .addEventListener("click", (event) => onSubmitButtonClick(event));
   </script>
 </html>
