@@ -182,11 +182,12 @@
   <script>
     let SubmitButton = document.getElementsByName("submit")[0];
     let IBANInputField = document.getElementById("00N3O00000BFMe0");
-    let AccountJointlyHeldInputField = document.getElementById("00N3O00000BFMdy");
+    let AccountJointlyHeldInputField =
+      document.getElementById("00N3O00000BFMdy");
     let AgreeCheckbox = document.getElementById("00N3O00000BFMds");
-    let AccountExistingPayeeCheckbox = document.getElementById("00N3O00000BFMdv");
+    let AccountExistingPayeeCheckbox =
+      document.getElementById("00N3O00000BFMdv");
     let JointAccountCheckbox = document.getElementById("00N3O00000BFMdt");
-
 
     function onSubmitButtonClick(event) {
       let isValid = isPolicyNumberValid();
@@ -199,20 +200,38 @@
       // COMMENT CAPTCHA LINE BELOW TO TEST WITHOUT CAPTCHA
       isValid = isValid ? isValid && isCaptchaValid() : false;
 
-      if(isValid === false) {
+      if (isValid === false) {
         event.preventDefault();
       }
     }
 
+    function getDigits(value) {
+      let returnVal = "";
+      for (i = 0; i < value.length; i++) {
+        let c = value.charAt(i);
+        if (c >= "0" && c <= "9") {
+          returnVal = returnVal + c;
+        }
+      }
+      return returnVal;
+    }
+
     function isPolicyNumberValid() {
       let policy_number = document.getElementById("00N3O00000BFMdw");
-      return isValidPredicate(policy_number, "Your Policy Number and Unique Identifier do not match an account on record", () => {
-        let policy_hex_value = (Number(policy_number.value) % 256).toString(16).toUpperCase();
-        if(policy_hex_value.length === 1)
-          policy_hex_value = "0" + policy_hex_value;
-        let unique_identifier = document.getElementById("00N3O00000BFMdx");
-        return policy_hex_value === unique_identifier.value.slice(0, 2);
-      });
+      let actual_value = getDigits(policy_number);
+      return isValidPredicate(
+        actual_value,
+        "Your Policy Number and Unique Identifier do not match an account on record",
+        () => {
+          let policy_hex_value = (Number(actual_value.value) % 256)
+            .toString(16)
+            .toUpperCase();
+          if (policy_hex_value.length === 1)
+            policy_hex_value = "0" + policy_hex_value;
+          let unique_identifier = document.getElementById("00N3O00000BFMdx");
+          return policy_hex_value === unique_identifier.value.slice(0, 2);
+        }
+      );
     }
 
     function isCaptchaValid() {
@@ -223,24 +242,41 @@
     }
 
     function isIBANValid() {
-      return isValidPredicate(IBANInputField, "Please confirm your New IBAN number", () => {
-        return IBANInputField.checkValidity();
-      });
+      return isValidPredicate(
+        IBANInputField,
+        "Please confirm your New IBAN number",
+        () => {
+          return IBANInputField.checkValidity();
+        }
+      );
     }
 
     function isAccountExistingPayeeValid() {
-      return isValid(AccountExistingPayeeCheckbox, "Please confirm the new account is held by the existing payee");
+      return isValid(
+        AccountExistingPayeeCheckbox,
+        "Please confirm the new account is held by the existing payee"
+      );
     }
 
     function isAccountJointlyHeldValid() {
-      return isValid(AccountJointlyHeldInputField, "Please confirm if account is jointly held");
+      return isValid(
+        AccountJointlyHeldInputField,
+        "Please confirm if account is jointly held"
+      );
     }
 
     function isJointAccountValid() {
-      return isValidPredicate(JointAccountCheckbox, "Please confirm all parties have agreed to the direct debit change", () => {
-        let value = AccountJointlyHeldInputField.options[AccountJointlyHeldInputField.selectedIndex].value;
-        return (value === 'Yes') ? JointAccountCheckbox.checked : true;
-      });
+      return isValidPredicate(
+        JointAccountCheckbox,
+        "Please confirm all parties have agreed to the direct debit change",
+        () => {
+          let value =
+            AccountJointlyHeldInputField.options[
+              AccountJointlyHeldInputField.selectedIndex
+            ].value;
+          return value === "Yes" ? JointAccountCheckbox.checked : true;
+        }
+      );
     }
 
     function isAgreeValid() {
@@ -248,26 +284,32 @@
     }
 
     function onIbanInput(event) {
-      IBANInputField.setCustomValidity('');
+      IBANInputField.setCustomValidity("");
       IBANInputField.value = event.target.value.toUpperCase();
-      IBANInputField.setSelectionRange(IBANInputField.selectionStart, IBANInputField.selectionStart);
+      IBANInputField.setSelectionRange(
+        IBANInputField.selectionStart,
+        IBANInputField.selectionStart
+      );
     }
-    
+
     function onAccountJointlyHeldInput() {
-      AccountJointlyHeldInputField.setCustomValidity('');
-      let value = AccountJointlyHeldInputField.options[AccountJointlyHeldInputField.selectedIndex].value;
-      if(value === 'Yes') {
-        JointAccountCheckbox.setAttribute('required', '');
+      AccountJointlyHeldInputField.setCustomValidity("");
+      let value =
+        AccountJointlyHeldInputField.options[
+          AccountJointlyHeldInputField.selectedIndex
+        ].value;
+      if (value === "Yes") {
+        JointAccountCheckbox.setAttribute("required", "");
       } else {
-        JointAccountCheckbox.removeAttribute('required', '');
-        JointAccountCheckbox.setCustomValidity('');
+        JointAccountCheckbox.removeAttribute("required", "");
+        JointAccountCheckbox.setCustomValidity("");
       }
     }
 
     function isValid(input_field, error_message) {
       let input_type = input_field.type;
       let valid;
-      if(input_type === 'checkbox') {
+      if (input_type === "checkbox") {
         valid = input_field.checked;
       } else {
         valid = !!input_field.value;
@@ -283,20 +325,29 @@
     }
 
     function setValidity(input_field, error_message, valid) {
-      if(valid === false) {
+      if (valid === false) {
         input_field.setCustomValidity(error_message);
         input_field.reportValidity();
       } else {
-        input_field.setCustomValidity('');
+        input_field.setCustomValidity("");
       }
     }
 
-    SubmitButton.addEventListener("click", (event) => onSubmitButtonClick(event));
+    SubmitButton.addEventListener("click", (event) =>
+      onSubmitButtonClick(event)
+    );
     IBANInputField.addEventListener("input", (event) => onIbanInput(event));
-    AccountJointlyHeldInputField.addEventListener("input", () => onAccountJointlyHeldInput());
-    AgreeCheckbox.addEventListener("input", () => { AgreeCheckbox.setCustomValidity("") });
-    AccountExistingPayeeCheckbox.addEventListener("input", () => { AccountExistingPayeeCheckbox.setCustomValidity("") });
-    JointAccountCheckbox.addEventListener("input", () => { JointAccountCheckbox.setCustomValidity("") });
-
+    AccountJointlyHeldInputField.addEventListener("input", () =>
+      onAccountJointlyHeldInput()
+    );
+    AgreeCheckbox.addEventListener("input", () => {
+      AgreeCheckbox.setCustomValidity("");
+    });
+    AccountExistingPayeeCheckbox.addEventListener("input", () => {
+      AccountExistingPayeeCheckbox.setCustomValidity("");
+    });
+    JointAccountCheckbox.addEventListener("input", () => {
+      JointAccountCheckbox.setCustomValidity("");
+    });
   </script>
 </html>
