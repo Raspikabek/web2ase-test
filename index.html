@@ -1,5 +1,5 @@
 <html>
-  <h2>Web to case Proof of Content -- Connected to ENV2 environment</h2>
+  <h2>Web to case Proof of Content -- Connected to UAT environment</h2>
   <!-- ---------------------------------------------------------------------- -->
   <!-- NOTE: Please add the following <META> element to your page <HEAD>.     -->
   <!-- If necessary, please modify the charset parameter to specify the       -->
@@ -25,7 +25,7 @@
   <!-- NOTE: Please add the following <FORM> element to your page.            -->
   <!-- ---------------------------------------------------------------------- -->
   <form
-    action="https://niac-prod--env2full.my.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8"
+    action="https://niac--uat.my.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8"
     method="POST"
   >
     <div style="font-weight: bold">
@@ -38,9 +38,9 @@
     <input
       type="hidden"
       name="captcha_settings"
-      value='{"keyname":"BankAccountTest","fallback":"false","orgId":"00D0D000000CwQe","ts":""}'
+      value='{"keyname":"BankAccountTest","fallback":"false","orgId":"00D3O0000008m78","ts":""}'
     />
-    <input type="hidden" name="orgid" value="00D0D000000CwQe" />
+    <input type="hidden" name="orgid" value="00D3O0000008m78" />
     <input
       type="hidden"
       name="retURL"
@@ -52,14 +52,14 @@
     <!-- these lines if you wish to test in debug mode.                         -->
     <!-- <input type="hidden" name="debug" value=1>                             -->
     <!-- <input type="hidden" name="debugEmail"                                 -->
-    <!-- value="shalagha.gumber+new_ireland-qa@pexlify.com">                    -->
+    <!-- value="eduardo.asenjo+web2case-ni@pexlify.com">                    -->
     <!-- ---------------------------------------------------------------------- -->
     <input type="hidden" name="type" id="type" value="DDM_Form" />
     Please provide your Policy Number:
     <input
-      id="00N0D000001ebjH"
+      id="00N3O00000BFMdw"
       maxlength="20"
-      name="00N0D000001ebjH"
+      name="00N3O00000BFMdw"
       size="20"
       type="text"
       required
@@ -67,9 +67,9 @@
     <br />
     Please provide your Unique Identifier:
     <input
-      id="00N0D000001ebjI"
+      id="00N3O00000BFMdx"
       maxlength="20"
-      name="00N0D000001ebjI"
+      name="00N3O00000BFMdx"
       size="20"
       type="text"
       required
@@ -102,8 +102,8 @@
       <br />
       Agree:
       <input
-        id="00N0D000001ebjD"
-        name="00N0D000001ebjD"
+        id="00N3O00000BFMds"
+        name="00N3O00000BFMds"
         type="checkbox"
         value="1"
         required
@@ -112,18 +112,18 @@
     <br />
     Bank Account Holder Name:
     <input
-      id="00N0D000001ebjF"
+      id="00N3O00000BFMdu"
       maxlength="255"
-      name="00N0D000001ebjF"
+      name="00N3O00000BFMdu"
       size="20"
       type="text"
       required
     /><br />
     New IBAN:
     <input
-      id="00N0D000001ebjL"
+      id="00N3O00000BFMe0"
       maxlength="32"
-      name="00N0D000001ebjL"
+      name="00N3O00000BFMe0"
       size="32"
       type="text"
       required
@@ -131,9 +131,9 @@
     /><br />
     New BIC:
     <input
-      id="00N0D000001ebjK"
+      id="00N3O00000BFMdz"
       maxlength="11"
-      name="00N0D000001ebjK"
+      name="00N3O00000BFMdz"
       size="15"
       type="text"
       required
@@ -141,16 +141,16 @@
     /><br />
     Please confirm that the bank account belongs to the existing payee:
     <input
-      id="00N0D000001ebjG"
-      name="00N0D000001ebjG"
+      id="00N3O00000BFMdv"
+      name="00N3O00000BFMdv"
       type="checkbox"
       value="1"
       required
     /><br />
     Is the new account a jointly held account?:
     <select
-      id="00N0D000001ebjJ"
-      name="00N0D000001ebjJ"
+      id="00N3O00000BFMdy"
+      name="00N3O00000BFMdy"
       title="Is the new account a jointly held account?"
       required
     >
@@ -161,8 +161,8 @@
     If this is a joint account, please tick here to confirm all parties agree to
     this account amendment:
     <input
-      id="00N0D000001ebjE"
-      name="00N0D000001ebjE"
+      id="00N3O00000BFMdt"
+      name="00N3O00000BFMdt"
       type="checkbox"
       value="1"
       required
@@ -181,11 +181,11 @@
 
   <script>
     let SubmitButton = document.getElementsByName("submit")[0];
-    let IBANInputField = document.getElementById("00N0D000001ebjL");
-    let AccountJointlyHeldInputField = document.getElementById("00N0D000001ebjJ");
-    let AgreeCheckbox = document.getElementById("00N0D000001ebjD");
-    let AccountExistingPayeeCheckbox = document.getElementById("00N0D000001ebjG");
-    let JointAccountCheckbox = document.getElementById("00N0D000001ebjE");
+    let IBANInputField = document.getElementById("00N3O00000BFMe0");
+    let AccountJointlyHeldInputField = document.getElementById("00N3O00000BFMdy");
+    let AgreeCheckbox = document.getElementById("00N3O00000BFMds");
+    let AccountExistingPayeeCheckbox = document.getElementById("00N3O00000BFMdv");
+    let JointAccountCheckbox = document.getElementById("00N3O00000BFMdt");
 
 
     function onSubmitButtonClick(event) {
@@ -195,6 +195,8 @@
       isValid = isValid ? isValid && isAccountExistingPayeeValid() : false;
       isValid = isValid ? isValid && isAccountJointlyHeldValid() : false;
       isValid = isValid ? isValid && isJointAccountValid() : false;
+
+      // COMMENT CAPTCHA LINE BELOW TO TEST WITHOUT CAPTCHA
       isValid = isValid ? isValid && isCaptchaValid() : false;
 
       if(isValid === false) {
@@ -203,12 +205,12 @@
     }
 
     function isPolicyNumberValid() {
-      let policy_number = document.getElementById("00N0D000001ebjH");
+      let policy_number = document.getElementById("00N3O00000BFMdw");
       return isValidPredicate(policy_number, "Your Policy Number and Unique Identifier do not match an account on record", () => {
         let policy_hex_value = (Number(policy_number.value) % 256).toString(16).toUpperCase();
         if(policy_hex_value.length === 1)
           policy_hex_value = "0" + policy_hex_value;
-        let unique_identifier = document.getElementById("00N0D000001ebjI");
+        let unique_identifier = document.getElementById("00N3O00000BFMdx");
         return policy_hex_value === unique_identifier.value.slice(0, 2);
       });
     }
