@@ -192,17 +192,6 @@
       }
     }
 
-    function getDigits(value) {
-      let returnVal = "";
-      for (i = 0; i < value.length; i++) {
-        let c = value.charAt(i);
-        if (c >= "0" && c <= "9") {
-          returnVal = returnVal + c;
-        }
-      }
-      return returnVal;
-    }
-
     function isPolicyNumberValid() {
       let policy_number = document.getElementById("00N3O00000BFMdw");
       let actual_value = getDigits(policy_number);
@@ -318,6 +307,17 @@
       } else {
         input_field.setCustomValidity("");
       }
+    }
+
+    function getDigits(value) {
+      let returnVal = "";
+      for (i = 0; i < value.length; i++) {
+        let c = value.charAt(i);
+        if (c >= "0" && c <= "9") {
+          returnVal = returnVal + c;
+        }
+      }
+      return returnVal;
     }
 
     SubmitButton.addEventListener("click", (event) =>
