@@ -17,162 +17,124 @@
   <!-- <input type="hidden" name="debugEmail"                                 -->
   <!-- value="eduardo.asenjo+web2case-ni@pexlify.com">                    -->
   <!-- ---------------------------------------------------------------------- -->
-  <form
-    action="https://niac--uat.my.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8"
-    method="POST"
-  >
-    <div style="font-weight: bold">
-      Welcome to Bank of Ireland Life's Secure Portal for customer to update
-      their direct debit details. Please complete the following pages in order
-      to amend your details. Please note that requests will be processed on next
-      appropriate business working day in line with your billing date.
-    </div>
-    <input type="hidden" name="debug" value="1" />
-    <input type="hidden" name="debugEmail" value="eduardo.asenjo@pexlify.com" />
-    <input type="hidden" name="orgid" value="00D3O0000008m78" />
-    <input
-      name="retURL"
-      type="hidden"
-      value="https://test.raspisdojo.com/thankyou"
-    />
-    <input id="type" name="type" type="hidden" value="DDM_Form" />Please provide
-    your Policy Number:<input
-      id="00N3O00000BFMdw"
-      maxlength="20"
-      name="00N3O00000BFMdw"
-      required="true"
-      size="20"
-      type="text"
-    />
-
-    Please provide your Unique Identifier:
-    <input
-      id="00N3O00000BFMdx"
-      maxlength="20"
-      name="00N3O00000BFMdx"
-      required="true"
-      size="20"
-      type="text"
-    />
-    <div>
-      Bank Account Holder Name:
+  <div style="background: #f1f1f1; padding: 20px; color: #333">
+    <form action="https://niac--uat.my.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8" method="POST">
+      <div style="background: #DAE1E9; padding: 10px;">
+        <p>
+          We want to make this process as easy as possible for you. If your pay premiums to us from an Ulster Bank or KBC account, please update your new bank account details below.
+        </p>
+        <p><b>Important information</b></p>
+        <ul style="list-style-type: initial">
+          <li>
+            Your new bank account details will be processed as soon as possible. However, if your next premium billing date is within the next 5 days, we may automatically attempt to collect premiums from your current KBC or Ulster Bank account. Rest assured, this will be updated with your new bank account details for the following premium collection date.
+          </li>
+          <li>
+            We recently sent you a letter with a unique pin to update your bank details using the form below. If you've more than one policy, you will be sent a separate letter for each policy with a unique pin for each one.
+          </li>
+          <li>
+            Before updating your new bank details below, please ensure:
+            <ul style="list-style: circle">
+              <li>Your new bank account is active</li>
+              <li>Your bank account comes from a EU bank</li>
+              <li>Your New Ireland policy is active</li> <!-- 'Bank of Ireland Life' in BIL site-->
+              <li>The payee(s) and policy owner(s) on the policy are the same</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <input type="hidden" name="debug" value="1" />
+      <input type="hidden" name="orgid" value="00D3O0000008m78" />
       <input
-        id="00N3O00000BFMdu"
-        maxlength="255"
-        name="00N3O00000BFMdu"
-        required="true"
-        size="20"
-        type="text"
+        name="retURL"
+        type="hidden"
+        value="https://test.raspisdojo.com/thankyou"
       />
-      <div>
-        New IBAN:
-        <input
-          id="00N3O00000BFMe0"
-          maxlength="32"
-          name="00N3O00000BFMe0"
-          pattern="^(?:(?:IT|SM)\d{2}[A-Z]\d{22}|CY\d{2}[A-Z]\d{23}|NL\d{2}[A-Z]{4}\d{10}|LV\d{2}[A-Z]{4}\d{13}|(?:BG|BH|GB|IE)\d{2}[A-Z]{4}\d{14}|GI\d{2}[A-Z]{4}\d{15}|RO\d{2}[A-Z]{4}\d{16}|KW\d{2}[A-Z]{4}\d{22}|MT\d{2}[A-Z]{4}\d{23}|NO\d{13}|(?:DK|FI|GL|FO)\d{16}|MK\d{17}|(?:AT|EE|KZ|LU|XK)\d{18}|(?:BA|HR|LI|CH|CR)\d{19}|(?:GE|DE|LT|ME|RS)\d{20}|IL\d{21}|(?:AD|CZ|ES|MD|SA)\d{22}|PT\d{23}|(?:BE|IS)\d{24}|(?:FR|MR|MC)\d{25}|(?:AL|DO|LB|PL)\d{26}|(?:AZ|HU)\d{27}|(?:GR|MU)\d{28})$"
-          required="true"
-          size="32"
-          type="text"
+      <input id="type" name="type" type="hidden" value="DDM_Form" />
+      <div style="font-size: 1rem;">
+        <p>
+          <label>Please provide your Policy Number</label> <br /> <input style="
+          padding: 6px 10px;
+          margin: 8px 0;
+          display: inline-block;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;" pattern="^([A-Za-z \d])*$" id="00N3O00000BFMdw" minlength="8" maxlength="8" name="00N3O00000BFMdw" required="true" size="8" type="text" />
+        </p>
+        <p>
+          <label>Please provide your unique pin number</label> <span title="You'll find this in the letter we sent you">&#128712;</span> <br /> <input style="
+          padding: 6px 10px;
+          margin: 8px 0;
+          display: inline-block;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;" pattern="^([A-Za-z \d])*$" id="00N3O00000BFMdx" minlength="5" maxlength="5" name="00N3O00000BFMdx" required="true" size="8" type="text"/>
+        </p>
+        <p>
+          <label>Bank Account Holder Name</label> <span title="For joint accounts, please add both bank account holders' names.">&#128712;</span> <br /> <input style="
+          padding: 6px 10px;
+          margin: 8px 0;
+          display: inline-block;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;" pattern="^([A-Za-z \d])*$" id="00N3O00000BFMdu" maxlength="30" name="00N3O00000BFMdu" required="true" size="32" type="text" />
+        </p>
+        <p>
+          <label>New IBAN</label> <span title="An IBAN is an International Bank Account Number. You'll find this on your bank statements or online bank account app.">&#128712;</span> <br /> <input style="
+          padding: 6px 10px;
+          margin: 8px 0;
+          display: inline-block;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;" id="00N3O00000BFMe0" maxlength="32" name="00N3O00000BFMe0" pattern="^(?:(?:IT|SM)\d{2}[A-Z]\d{22}|CY\d{2}[A-Z]\d{23}|NL\d{2}[A-Z]{4}\d{10}|LV\d{2}[A-Z]{4}\d{13}|(?:BG|BH|GB|IE)\d{2}[A-Z]{4}\d{14}|GI\d{2}[A-Z]{4}\d{15}|RO\d{2}[A-Z]{4}\d{16}|KW\d{2}[A-Z]{4}\d{22}|MT\d{2}[A-Z]{4}\d{23}|NO\d{13}|(?:DK|FI|GL|FO)\d{16}|MK\d{17}|(?:AT|EE|KZ|LU|XK)\d{18}|(?:BA|HR|LI|CH|CR)\d{19}|(?:GE|DE|LT|ME|RS)\d{20}|IL\d{21}|(?:AD|CZ|ES|MD|SA)\d{22}|PT\d{23}|(?:BE|IS)\d{24}|(?:FR|MR|MC)\d{25}|(?:AL|DO|LB|PL)\d{26}|(?:AZ|HU)\d{27}|(?:GR|MU)\d{28})$" required="true" size="32" type="text"/>
+        </p>
+        <p>
+          <label>New BIC</label> <span title="A BIC is a Bank Identifier Code (also known as a Swift Code). You'll find this on your bank statements or online bank account app.">&#128712;</span> <br /> <input style="
+          padding: 6px 10px;
+          margin: 8px 0;
+          display: inline-block;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;" id="00N3O00000BFMdz" maxlength="11" name="00N3O00000BFMdz" pattern="([a-zA-Z]{4})([a-zA-Z]{2})(([2-9a-zA-Z]{1})([0-9a-np-zA-NP-Z]{1}))((([0-9a-wy-zA-WY-Z]{1})([0-9a-zA-Z]{2}))|([xX]{3})|)" required="true" size="15" type="text" />
+        </p>
+        <p>
+          <input style="width:1rem; height:1rem;" id="00N3O00000BFMdv" name="00N3O00000BFMdv" required="true" type="checkbox" value="1" /> <label>Please confirm that the new bank account belongs to the existing payee or owner of the policy.</label> <span title="The payee is the person who makes payments to the policy.">&#128712;</span>
+        </p>
+        <p>
+          <label>Is the new bank account a jount account?</label> <br /><select style="padding: 6px 10px;
+          margin: 8px 0;
+          display: inline-block;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;" id="00N3O00000BFMdy" title="Is the new account a jointly held account?" name="00N3O00000BFMdy" required="true"> <option value="">--None--</option> <option value="Yes">Yes</option> <option value="No">No</option> </select>
+        </p>
+        <p>
+          <input style="width:1rem; height:1rem;" id="00N3O00000BFMdt" name="00N3O00000BFMdt" type="checkbox" value="1" /> <label>If this is a joint account, please tick here to confirm both bank account holders agree to this bank account update.</label>
+        </p>
+      </div>
+      <div style="background: #DAE1E9; padding: 10px;">
+        <div>
+          <p>
+          Please note that as you are not signing a paper mandate, by continuing with this form, you authorise (A) New Ireland to send instructions to your bank to debit your account and (B) your Bank to debit your account in accordance with the instruction from New Ireland.
+        </p>
+        <p>
+          As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited. Your rights are explained in a statement that you can obtain from your bank”. New Ireland, 5-9 South Frederick Street, Dublin 2.
+        </p>
+        <!--
+          Bank of Ireland Life is a trading name of New Ireland Assurance Company plc. New Ireland Assurance Company plc. trading as Bank of Ireland Life is regulated by the Central Bank of Ireland. A member of Bank of Ireland Group.
+        -->
+        </div>
+        <p style="font-size:1rem;">
+          <input style="width:1rem; height:1rem;" id="00N3O00000BFMds" name="00N3O00000BFMds" required="true" type="checkbox" value="1" /> <label>Agree</label>
+        </p>
+        <input id="external" name="external" type="hidden" value="1" />
+        <input type="hidden" name="captcha_settings" value='{"keyname":"BankAccountTest","fallback":"true","orgId":"00D3O0000008m78","ts":""}'
         />
-        <div>
-          New BIC:
-          <input
-            id="00N3O00000BFMdz"
-            maxlength="11"
-            name="00N3O00000BFMdz"
-            pattern="([a-zA-Z]{4})([a-zA-Z]{2})(([2-9a-zA-Z]{1})([0-9a-np-zA-NP-Z]{1}))((([0-9a-wy-zA-WY-Z]{1})([0-9a-zA-Z]{2}))|([xX]{3})|)"
-            required="true"
-            size="15"
-            type="text"
-          />
-
-          &nbsp;
-          <div>
-            Please confirm that the bank account belongs to the existing payee:
-            <input
-              id="00N3O00000BFMdv"
-              name="00N3O00000BFMdv"
-              required="true"
-              type="checkbox"
-              value="1"
-            />
-            Is the new account a jointly held account?:<select
-              id="00N3O00000BFMdy"
-              title="Is the new account a jointly held account?"
-              name="00N3O00000BFMdy"
-              required="true"
-            >
-              <option value="">--None--</option>
-              <option value="Yes">Yes</option>
-              <option value="No">No</option>
-            </select>
-            If this is a joint account, please tick here to confirm all parties
-            agree to this account amendment:
-            <input
-              id="00N3O00000BFMdt"
-              name="00N3O00000BFMdt"
-              type="checkbox"
-              value="1"
-            />
-
-            &nbsp;
-          </div>
-        </div>
+        <div style class="g-recaptcha" data-sitekey="6LdL6jUiAAAAAKOTO4sa7cmrHBDBbNH0wa89_mKU"></div>
       </div>
-      <div>
-        <div>
-          <div>
-            <div style="background-color: #f1f1f1">
-              <div style="font-weight: bold">
-                Please note that as you are not signing a paper mandate, by
-                continuing with this form, you authorise (A) Bank of Ireland
-                Life to send instructions to your bank to debit your account and
-                (B) your Bank to debit your account in accordance with the
-                instruction from Bank of Ireland Life.
-              </div>
-              &nbsp;
-              <div style="font-weight: bold">
-                As part of your rights, you are entitled to a refund from your
-                bank under the terms and conditions of your agreement with your
-                bank. A refund must be claimed within 8 weeks starting from the
-                date on which your account was debited. Your rights are
-                explained in a statement that you can obtain from your bank”.
-                Bank of Ireland Life, 5-9 South Frederick Street, Dublin 2.
-              </div>
-              &nbsp;
-              <div style="font-weight: bold">
-                Bank of Ireland Life is a trading name of New Ireland Assurance
-                Company plc. New Ireland Assurance Company plc. trading as Bank
-                of Ireland Life is regulated by the Central Bank of Ireland. A
-                member of Bank of Ireland Group.
-              </div>
-              Agree:
-              <input
-                id="00N3O00000BFMds"
-                name="00N3O00000BFMds"
-                required="true"
-                type="checkbox"
-                value="1"
-              />
-            </div>
-            <input id="external" name="external" type="hidden" value="1" />
-            <input
-              type="hidden"
-              name="captcha_settings"
-              value='{"keyname":"BankAccountTest","fallback":"true","orgId":"00D3O0000008m78","ts":""}'
-            />
-            <div
-              class="g-recaptcha"
-              data-sitekey="6LdL6jUiAAAAAKOTO4sa7cmrHBDBbNH0wa89_mKU"
-            ></div>
-
-            <input name="submit" type="submit" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </form>
+      <input style=" font-size: 1rem; width: 100%; background-color: #1C5E87; color: white; padding: 14px 20px; margin: 8px 0; border: none; border-radius: 4px; cursor: pointer;" name="submit" type="submit" value="Update details" />
+    </form>
+  </div>
+  
 
   <script>
     let SubmitButton = document.getElementsByName("submit")[0];
