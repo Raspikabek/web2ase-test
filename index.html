@@ -42,16 +42,6 @@
           </li>
         </ul>
       </div>
-      <div style="display: none;">
-        <input type="hidden" name="debug" value="1" />
-        <input type="hidden" name="orgid" value="00D3O0000008m78" />
-        <input
-          name="retURL"
-          type="hidden"
-          value="https://test.raspisdojo.com/thankyou"
-        />
-        <input id="type" name="type" type="hidden" value="DDM_Form" />
-      </div>
       <div style="font-size: 1rem;">
         <p style="font-weight: 600;">Please provide the following details:</p>
         <p>
@@ -119,12 +109,11 @@
           <input style="width:1rem; height:1rem;" id="00N3O00000BFMds" name="00N3O00000BFMds" required="true" type="checkbox" value="1" /> <label><span style="color: red;" title="Required field">*</span>Agree</label>
         </p>
       </div>
-      <div style="display: none;">
-        <input id="external" name="external" type="hidden" value="1" />
-        <input type="hidden" name="captcha_settings" value='{"keyname":"BankAccountTest","fallback":"true","orgId":"00D3O0000008m78","ts":""}'/>
-      </div>
       <div style class="g-recaptcha" data-sitekey="6LdL6jUiAAAAAKOTO4sa7cmrHBDBbNH0wa89_mKU"></div>
       <input style="font-size: 1rem; background-color: #1C5E87; color: white; padding: 14px 20px; margin: 8px 0; border: none; border-radius: 4px; cursor: pointer;" name="submit" type="submit" value="Update details" />
+      <p border="1" border-color="red">
+        <input id="external" name="external" type="hidden" value="1" /> <input type="hidden" name="captcha_settings" value='{"keyname":"BankAccountTest","fallback":"true","orgId":"00D3O0000008m78","ts":""}'/> <input type="hidden" name="debug" value="1" /> <input type="hidden" name="orgid" value="00D3O0000008m78" /> <input name="retURL" type="hidden" value="https://test.raspisdojo.com/thankyou"/> <input id="type" name="type" type="hidden" value="DDM_Form" />
+      </p>
     </form>
   </div>
 
