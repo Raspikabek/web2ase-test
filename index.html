@@ -127,6 +127,7 @@
       document.getElementById("00N3O00000BFMdv");
     let JointAccountCheckbox = document.getElementById("00N3O00000BFMdt");
     let PolicyNumberInputField = document.getElementById("00N3O00000BFMdw");
+    let UniquePinNumberInputField = document.getElementById("00N3O00000BFMdx");
 
     function onSubmitButtonClick(event) {
       let isValid = isPolicyNumberValid();
@@ -137,7 +138,7 @@
       isValid = isValid ? isValid && isJointAccountValid() : false;
 
       // COMMENT CAPTCHA LINE BELOW TO TEST WITHOUT CAPTCHA
-      isValid = isValid ? isValid && isCaptchaValid() : false;
+      // isValid = isValid ? isValid && isCaptchaValid() : false;
 
       if (isValid === false) {
         event.preventDefault();
@@ -290,6 +291,9 @@
     });
     PolicyNumberInputField.addEventListener("input", (event) => {
       PolicyNumberInputField.value = event.target.value.toUpperCase();
+    });
+    UniquePinNumberInputField.addEventListener("input", (event) => {
+      UniquePinNumberInputField.value = event.target.value.toUpperCase();
     });
 
     function timestamp() {
