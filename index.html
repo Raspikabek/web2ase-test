@@ -138,7 +138,7 @@
       isValid = isValid ? isValid && isJointAccountValid() : false;
 
       // COMMENT CAPTCHA LINE BELOW TO TEST WITHOUT CAPTCHA
-      // isValid = isValid ? isValid && isCaptchaValid() : false;
+      isValid = isValid ? isValid && isCaptchaValid() : false;
 
       if (isValid === false) {
         event.preventDefault();
