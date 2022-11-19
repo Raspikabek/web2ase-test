@@ -131,6 +131,7 @@
 
     function onSubmitButtonClick(event) {
       let isValid = isPolicyNumberValid();
+      isValid = isValid ? isValid && isUniqueIdValid() : false;
       isValid = isValid ? isValid && isAgreeValid() : false;
       isValid = isValid ? isValid && isIBANValid() : false;
       isValid = isValid ? isValid && isAccountExistingPayeeValid() : false;
@@ -147,6 +148,17 @@
 
     function isPolicyNumberValid() {
       let policy_number = document.getElementById("00N3O00000BFMdw");
+
+      let isValid = isValidPredicate(
+        policy_number,
+        `Please lengthen this text to 8 characters (you are currently using ${policy_number.value.length} characters)`,
+        () => { return policy_number.value.length === 8; }
+      );
+
+      if (!isValid) {
+        return isValid;
+      }
+
       return isValidPredicate(
         policy_number,
         "Your Policy Number and Unique Identifier do not match an account on record",
@@ -160,6 +172,14 @@
           let unique_identifier = document.getElementById("00N3O00000BFMdx");
           return policy_hex_value === unique_identifier.value.slice(0, 2);
         }
+      );
+    }
+
+    function isUniqueIdValid() {
+        return isValidPredicate(
+            UniquePinNumberInputField,
+        `Please lengthen this text to 5 characters (you are currently using ${UniquePinNumberInputField.value.length} characters)`,
+        () => { return UniquePinNumberInputField.value.length === 5; }
       );
     }
 
